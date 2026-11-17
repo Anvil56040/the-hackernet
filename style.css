@@ -1,3 +1,5 @@
+/* CSS styles for your project */
+
  /*.header {
   text-align: center;
   margin: 10px auto 10px auto;
@@ -43,14 +45,14 @@
 }
 .contact {
   margin-top: 20px;
-  font-family: "monospace";
+  font-family: monospace;
 }
 .donate {
-  font-family: "monospace";
+  font-family: monospace;
 }
 
 .donate2 {
-  font-family: "monospace";
+  font-family: "Tomorrow";
 }
 
 p {
@@ -298,6 +300,13 @@ body::after {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
+/**/
+/*
+Source - https://stackoverflow.com/a/31951412
+Posted by Thomas Bormans, modified by community. See post 'Timeline' for change history
+Retrieved 2026-11-16, License - CC BY-SA 4.0
+*/
 
 .marquee {
   background-color: transparent;
