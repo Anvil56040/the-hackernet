@@ -1,14 +1,31 @@
-/* CSS styles for your project */
-
  /*.header {
   text-align: center;
+  margin: 10px auto 10px auto;
   background: transparent;
   color: #33ff33;
   font-size: 10px;
+  position: fixed;
+  right: 36%;
+  border-width: 1px;
+  border-color: #04bf04;
+  border-style: solid;
+  padding-left: 50px;
+  padding-right: 50px;
 } 
 */
+.welcome {
+  display: inline-block;
+  padding: 0px 2px 1px 2px;
+
+  /*border: #33ff33 1.5px solid;
+  border-radius: 5px;*/
+}
 .banner {
   display: none;
+}
+.list {
+  font-family: "Tomorrow";
+  font-size: 14px;
 }
 @media (min-width: 728px) {
   
@@ -38,7 +55,7 @@
 
 p {
   font-family: "Tomorrow";
-  font-size: 15px;
+  font-size: 14px;
   margin: auto;
 }
 ul {
@@ -280,4 +297,21 @@ body::after {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+
+.marquee {
+  background-color: transparent;
+  color: #04bf04;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.marquee > * {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 7s linear infinite;
+}
+@keyframes marquee {
+  0%   { transform: translate(-100%, 0); }
+  100% { transform: translate(0, 0); }
 }
