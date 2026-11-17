@@ -301,12 +301,6 @@ body::after {
   border-radius: 5px;
 }
 
-/**/
-/*
-Source - https://stackoverflow.com/a/31951412
-Posted by Thomas Bormans, modified by community. See post 'Timeline' for change history
-Retrieved 2026-11-16, License - CC BY-SA 4.0
-*/
 
 .marquee {
   background-color: transparent;
