@@ -188,7 +188,6 @@
     const msgInput = document.getElementById("chat-input");
     const sendBtn = document.getElementById("chat-send");
 
-    // Restore saved nickname if visitor typed one before
     const savedName = localStorage.getItem("chat_nickname");
     if (savedName) nameInput.value = savedName;
 
@@ -217,7 +216,6 @@
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    // Load last 50 messages
     const { data: initialMessages } = await db
       .from("messages")
       .select("*")
@@ -228,7 +226,6 @@
       initialMessages.reverse().forEach(renderMessage);
     }
 
-    // Listen for new messages in real time
     db
       .channel("room-1")
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, (payload) => {
@@ -237,11 +234,11 @@
       .subscribe();
 
     let lastSentTime = 0;
-const COOLDOWN_MS = 3000; // 3 seconds
+const COOLDOWN_MS = 3000; 
 
 async function sendMessage() {
   const now = Date.now();
-  if (now - lastSentTime < COOLDOWN_MS) return; // Ignore if still in cooldown
+  if (now - lastSentTime < COOLDOWN_MS) return;
 
   const name = nameInput.value.trim() || "Anonymous";
   const text = msgInput.value.trim();
@@ -250,7 +247,6 @@ async function sendMessage() {
   lastSentTime = now;
   msgInput.value = "";
 
-  // Temporarily disable button and show countdown
   sendBtn.disabled = true;
   let secondsLeft = 3;
   const originalText = sendBtn.textContent;
@@ -278,259 +274,4 @@ async function sendMessage() {
 </script>
 
 </body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&amp;family=Press+Start+2P&amp;family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-<link rel="icon" type="image/x-icon" href="favicon.png">  
-  <style>
-  .button-54 {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  background-color: black;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #ffffff;
-  cursor: pointer;
-  border: 3px solid #ffffff;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-54:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
-}
-
-@media (min-width: 768px) {
-  .button-54 {
-    padding: 0.25em 0.75em;
-  }
-}
-  
-  body {
-    background-color: #000000;
-    color: #ffffff;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  #site-chat {
-    width: 100%;
-    max-width: 480px;
-    height: 80vh;
-    max-height: 620px;
-    background: black;
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    box-sizing: border-box;
-    border: 2px solid white;
-  }
-
-  #chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-right: 6px;
-    margin-bottom: 14px;
-  }
-
-  #chat-messages::-webkit-scrollbar {
-    width: 5px;
-  }
-  #chat-messages::-webkit-scrollbar-thumb {
-    background: #333333;
-    border-radius: 0;
-  }
-
-  .msg-group {
-    display: flex;
-    flex-direction: column;
-    max-width: 78%;
-    align-self: flex-start;
-  }
-
-  .msg-group.self {
-    align-self: flex-end;
-    align-items: flex-end;
-  }
-
-  .msg-name {
-    font-size: 11px;
-    color: #888888;
-    margin-bottom: 4px;
-    padding: 0;
-  }
-
-  .msg-bubble {
-    background-color: #111111;
-    color: cyan;
-    border: 1px solid #333333;
-    padding: 10px 14px;
-    border-radius: 0;
-    font-size: 14px;
-    line-height: 1.4;
-    word-wrap: break-word;
-  }
-
-  .msg-group.self .msg-bubble {
-    background-color: #222222;
-    border-color: #444444;
-    border-radius: 0;
-  }
-
-  .chat-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-top: 1px solid #262626;
-    padding-top: 12px;
-  }
-
-  .input-row {
-    display: flex;
-    gap: 8px;
-  }
-
-  #site-chat input {
-    background-color: #080808;
-    color: #ffffff;
-    border: 1px solid #333333;
-    border-radius: 0;
-    padding: 10px 12px;
-    font-size: 14px;
-    outline: none;
-  }
-
-  #site-chat input::placeholder {
-    color: #666666;
-  }
-
-  #site-chat input:focus {
-    border-color: #ffffff;
-  }
-
-  #chat-name {
-    width: 34%;
-  }
-
-  #chat-input {
-    width: 66%;
-  }
-
-  #chat-send:hover {
-    opacity: 0.85;
-  }
-</style>
-</head>
-    <body>
-
-
-<div id="site-chat">
-  <div id="chat-messages"></div>
-  <div class="chat-controls">
-    <div class="input-row">
-      <input id="chat-name" type="text" placeholder="Name (optional)" maxlength="25" />
-      <input id="chat-input" type="text" placeholder="Message" maxlength="300" />
-    </div>
-<button id="chat-send" class="button-54" role="button">Send</button>
-<h3 style="margin: 0px; font-family: monospace; color: #00FF26;"><a href="index">Return</a></h3>  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/dist/umd/supabase.min.js"></script>
-<script>
-  (async function () {
-    const SUPABASE_URL = "https://cxjvxaffqouljkbntpxn.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_SdO1oOjzo1od4WmV__c-Bg_rkHeslD_";
-
-    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const messagesDiv = document.getElementById("chat-messages");
-    const nameInput = document.getElementById("chat-name");
-    const msgInput = document.getElementById("chat-input");
-    const sendBtn = document.getElementById("chat-send");
-
-    // Restore saved nickname if visitor typed one before
-    const savedName = localStorage.getItem("chat_nickname");
-    if (savedName) nameInput.value = savedName;
-
-    nameInput.addEventListener("input", () => {
-      localStorage.setItem("chat_nickname", nameInput.value);
-    });
-
-    function renderMessage(msg) {
-      const currentName = (nameInput.value.trim() || "Anonymous").toLowerCase();
-      const isSelf = msg.name.trim().toLowerCase() === currentName && currentName !== "anonymous";
-
-      const group = document.createElement("div");
-      group.className = isSelf ? "msg-group self" : "msg-group";
-
-      const nameEl = document.createElement("div");
-      nameEl.className = "msg-name";
-      nameEl.textContent = msg.name;
-
-      const bubble = document.createElement("div");
-      bubble.className = "msg-bubble";
-      bubble.textContent = msg.text;
-
-      group.appendChild(nameEl);
-      group.appendChild(bubble);
-      messagesDiv.appendChild(group);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    // Load last 50 messages
-    const { data: initialMessages } = await db
-      .from("messages")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(50);
-
-    if (initialMessages) {
-      initialMessages.reverse().forEach(renderMessage);
-    }
-
-    // Listen for new messages in real time
-    db
-      .channel("room-1")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, (payload) => {
-        renderMessage(payload.new);
-      })
-      .subscribe();
-
-    async function sendMessage() {
-      const name = nameInput.value.trim() || "Anonymous";
-      const text = msgInput.value.trim();
-      if (!text) return;
-
-      msgInput.value = "";
-      await db.from("messages").insert([{ name, text }]);
-    }
-
-    sendBtn.addEventListener("click", sendMessage);
-    msgInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-  })();
-</script>
-
-</body>
-  </div>
 </html>
-
