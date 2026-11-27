@@ -27,6 +27,12 @@ outline: none;
 .begin {
   padding-top: 35vh;
 }
+.result-title {
+  font-family: "Tomorrow";
+}
+.result-favicon {
+  margin-right: 10px;
+}
 /* send button for chat */
 .button-54 {
   font-family: "Open Sans", sans-serif;
