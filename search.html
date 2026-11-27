@@ -21,6 +21,39 @@
 <button class="button-54" style="margin-top: 15px;">⌕</button>
 <h3><a href="index.html" style="text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Return</a></h3>
 </div>
+  <script>
+    
+// Find search elements
+const searchInput = document.querySelector(".search");
+const searchButton = document.querySelector(".button-54");
+
+// Perform search
+function performSearch() {
+    const query = searchInput.value.trim();
+
+    if (!query) {
+        searchInput.focus();
+        return;
+    }
+
+    window.location.href =
+        "results.html?q=" + encodeURIComponent(query);
+}
+
+// Button click
+searchButton.addEventListener("click", performSearch);
+
+// Enter key
+searchInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        performSearch();
+    }
+});
+
+// Focus search box when page loads
+searchInput.focus();
+
+  </script>
 </body>
 </html>
   
