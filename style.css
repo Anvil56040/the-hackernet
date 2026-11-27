@@ -1,5 +1,3 @@
-/* CSS styles for your project */
-
  /*.header {
   text-align: center;
   margin: 10px auto 10px auto;
@@ -15,6 +13,48 @@
   padding-right: 50px;
 } 
 */
+/* search area */
+.search { 
+padding: 8px;
+margin-right: 5px; 
+border: 2px solid white; 
+background-color: black; 
+color: white; 
+box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+outline: none;
+}
+
+.begin {
+  padding-top: 35vh;
+}
+/* send button for chat */
+.button-54 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  background-color: black;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+#resultCount {
+  font-family: "tomorrow";
+}
+/* main things */
 .welcome {
   display: inline-block;
   padding: 0px 2px 1px 2px;
@@ -264,16 +304,15 @@ body::after {
   position:relative;
   padding:10px 20px;
   
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   text-shadow: 0px 1px 0px #000;
-  filter: dropshadow(color=#000, offx=0px, offy=1px);
+
   
   -webkit-box-shadow:inset 0 1px 0 #0084FF, 0 10px 0 #0066FF;
-  -moz-box-shadow:inset 0 1px 0 #0084FF, 0 10px 0 #0066FF;
   box-shadow:inset 0 1px 0 #0084FF, 0 10px 0 #0066FF;
   
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
+
   border-radius: 5px;
 }
 
@@ -282,7 +321,6 @@ body::after {
   background-color:#0084FF;
   
   -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
-  -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
   box-shadow:inset 0 1px 0 #0066FF, inset 0 -3px 0 #0066FF;
 }
 
@@ -297,10 +335,15 @@ body::after {
   z-index:-1;
   background-color:#171717;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
 }
 
+/**/
+/*
+Source - https://stackoverflow.com/a/31951412
+Posted by Thomas Bormans, modified by community. See post 'Timeline' for change history
+Retrieved 2026-11-16, License - CC BY-SA 4.0
+*/
 
 .marquee {
   background-color: transparent;
