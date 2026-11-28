@@ -29,6 +29,7 @@ outline: none;
 }
 .result-title {
   font-family: monospace;
+  font-size: 15px;
 }
 .result-favicon {
   margin-right: 10px;
