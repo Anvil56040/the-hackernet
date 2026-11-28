@@ -28,14 +28,14 @@ outline: none;
   padding-top: 35vh;
 }
 .result-title {
-  font-family: "Tomorrow";
+  font-family: monospace;
 }
 .result-favicon {
   margin-right: 10px;
 }
 /* send button for chat */
 .button-54 {
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   font-size: 16px;
   background-color: black;
   letter-spacing: 2px;
